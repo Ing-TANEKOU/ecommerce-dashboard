@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
-
+import { DeleteButton } from '@/components/DeleteButton';
 export default async function ProductsPage() {
   const products = await prisma.product.findMany({
     orderBy: { createdAt: 'desc' },
@@ -24,6 +24,7 @@ export default async function ProductsPage() {
               <th className="px-6 py-3 text-left text-sm font-semibold">Nom</th>
               <th className="px-6 py-3 text-left text-sm font-semibold">Prix</th>
               <th className="px-6 py-3 text-left text-sm font-semibold">Stock</th>
+              <th className="px-6 py-3 text-left text-sm font-semibold">Actions</th>
             </tr>
           </thead>
         <tbody>
@@ -32,6 +33,9 @@ export default async function ProductsPage() {
                <td className="px-6 py-4 text-slate-900">{product.name}</td>
                <td className="px-6 py-4 text-slate-900 font-medium">{product.price}€</td>
                <td className="px-6 py-4 text-slate-900">{product.stock}</td>
+               <td className="px-6 py-4">
+               <DeleteButton id={product.id} />
+               </td>
                </tr>
               ))}
         </tbody>
