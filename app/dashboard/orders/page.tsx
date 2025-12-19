@@ -5,9 +5,12 @@ import { auth } from '@/auth';
 export default async function OrdersPage() {
   const session = await auth();
 
-  // if the user is an admin, show all orders; otherwise only show the user's orders
-  const where = session?.user?.role === 'ADMIN' ? {} : { userId: session?.user?.id };
+  // fetch up-to-date user record to know role
+  const currentUser = session?.user?.id ? await prisma.user.findUnique({ where: { id: session.user.id } }) : null;
+  const isAdmin = currentUser?.role === 'ADMIN';
 
+  // if the user is an admin, show all orders; otherwise only show the user's orders
+  const where = isAdmin ? {} : { userId: session?.user?.id };
   const orders = await prisma.order.findMany({
     where,
     include: {
