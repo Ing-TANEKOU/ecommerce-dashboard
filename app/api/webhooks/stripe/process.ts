@@ -9,6 +9,18 @@ export async function handleCheckoutSession(session: any) {
     throw new Error('Missing productId in session metadata');
   }
 
+  // ensure a (mock) user exists for local testing
+  await prisma.user.upsert({
+    where: { id: 'mock-user-id' },
+    update: {},
+    create: {
+      id: 'mock-user-id',
+      email: 'guest@example.com',
+      name: 'Guest',
+      role: 'USER',
+    },
+  });
+
   await prisma.order.create({
     data: {
       userId: 'mock-user-id',
