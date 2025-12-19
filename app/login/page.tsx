@@ -20,6 +20,22 @@ export default function LoginPage() {
             Se connecter avec Google
           </button>
         </form>
+        {process.env.NODE_ENV !== 'production' && (
+          <form
+            action={async () => {
+              'use server';
+              await signIn('credentials', { email: 'test@example.com', redirectTo: '/dashboard' });
+            }}
+          >
+            <button
+              type="submit"
+              className="mt-4 w-full px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium"
+            >
+              Se connecter en dev (test@example.com)
+            </button>
+          </form>
+        )}
+
         <p className="text-sm text-slate-600 mt-4 text-center">
           Mode mock: utiliser n'importe quel compte Google
         </p>
