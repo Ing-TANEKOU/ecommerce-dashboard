@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
 import { DeleteButton } from '@/components/DeleteButton';
+import { CheckoutButton } from '@/components/CheckoutButton';
 export default async function ProductsPage() {
   const products = await prisma.product.findMany({
     orderBy: { createdAt: 'desc' },
@@ -28,16 +29,17 @@ export default async function ProductsPage() {
             </tr>
           </thead>
         <tbody>
-               {products.map((product) => (
-               <tr key={product.id} className="border-b hover:bg-slate-50">
-               <td className="px-6 py-4 text-slate-900">{product.name}</td>
-               <td className="px-6 py-4 text-slate-900 font-medium">{product.price}€</td>
-               <td className="px-6 py-4 text-slate-900">{product.stock}</td>
-               <td className="px-6 py-4">
-               <DeleteButton id={product.id} />
-               </td>
-               </tr>
-              ))}
+          {products.map((product) => (
+            <tr key={product.id} className="border-b hover:bg-slate-50">
+              <td className="px-6 py-4 text-slate-900">{product.name}</td>
+              <td className="px-6 py-4 text-slate-900 font-medium">{product.price}€</td>
+              <td className="px-6 py-4 text-slate-900">{product.stock}</td>
+              <td className="px-6 py-4 flex gap-2">
+              <CheckoutButton productId={product.id} />
+              <DeleteButton id={product.id} />
+              </td>
+            </tr>
+          ))}
         </tbody>
         </table>
       </div>
