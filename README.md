@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# E-commerce Dashboard
 
-## Getting Started
+Plateforme de gestion e-commerce construite avec Next.js 15, React 19, TypeScript, Tailwind CSS, Prisma, NextAuth et Stripe.
 
-First, run the development server:
+## Fonctionnalités
 
+- ✅ Authentification Google (NextAuth)
+- ✅ CRUD produits complet
+- ✅ Gestion commandes
+- ✅ Paiements Stripe (mode test)
+- ✅ Dashboard analytics
+- ✅ Gestion utilisateurs
+- ✅ Base de données SQLite (Prisma ORM)
+- ✅ API REST sécurisée
+- ✅ SEO optimisé
+- ✅ Tests Jest
+
+## Stack Technique
+
+- **Framework**: Next.js 15.1 (App Router)
+- **Language**: TypeScript 5.9
+- **Styling**: Tailwind CSS 3.4
+- **Database**: SQLite (Prisma 6.8)
+- **Auth**: NextAuth 5.0
+- **Paiements**: Stripe 20.0
+- **Validation**: Zod 4.2
+- **Tests**: Jest 29.7
+- **Déploiement**: Vercel
+
+## Installation
 ```bash
+# Cloner le dépôt
+git clone https://github.com/votre-username/ecommerce-dashboard.git
+cd ecommerce-dashboard
+
+# Installer dépendances
+npm install
+
+# Configurer variables d'environnement
+cp .env.example .env
+# Remplir .env avec vos clés
+
+# Créer base de données
+npx prisma migrate dev
+
+# Peupler données de test
+npm run seed
+
+# Lancer serveur dev
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Variables d'environnement requises
+```env
+DATABASE_URL="file:./prisma/dev.db"
+NEXTAUTH_SECRET="votre-secret-32-chars"
+NEXTAUTH_URL="http://localhost:3000"
+GOOGLE_CLIENT_ID="votre-google-client-id"
+GOOGLE_CLIENT_SECRET="votre-google-secret"
+STRIPE_SECRET_KEY="sk_test_votre_cle"
+STRIPE_PUBLISHABLE_KEY="pk_test_votre_cle"
+STRIPE_WEBHOOK_SECRET="whsec_votre_secret"
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_votre_cle"
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
+```bash
+npm run dev          # Serveur développement
+npm run build        # Build production
+npm run start        # Serveur production
+npm test             # Tests Jest
+npm run seed         # Peupler base de données
+npx prisma studio    # Interface admin base de données
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Structure du projet
+```
+├── app/
+│   ├── api/              # API Routes
+│   ├── dashboard/        # Pages dashboard
+│   ├── login/            # Page connexion
+│   ├── layout.tsx        # Layout principal
+│   └── page.tsx          # Page d'accueil
+├── components/           # Composants React
+├── lib/                  # Utilitaires
+├── prisma/
+│   ├── schema.prisma     # Schéma base de données
+│   └── seed.ts           # Données de test
+├── __tests__/            # Tests Jest
+└── public/               # Assets statiques
+```
 
-## Learn More
+## Auteur
 
-To learn more about Next.js, take a look at the following resources:
+Ing-TANEKOU - Formation Next.js 14-25 décembre 2025
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Licence
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT

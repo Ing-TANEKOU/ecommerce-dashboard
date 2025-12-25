@@ -1,3 +1,9 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Utilisateurs',
+  description: 'Gestion des utilisateurs',
+};
 import { prisma } from '@/lib/prisma';
 
 export default async function UsersPage() {

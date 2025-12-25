@@ -1,3 +1,9 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Produits',
+  description: 'Gestion du catalogue produits',
+};
 import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
 import { DeleteButton } from '@/components/DeleteButton';

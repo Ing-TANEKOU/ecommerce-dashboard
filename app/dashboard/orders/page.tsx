@@ -1,3 +1,9 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Commandes',
+  description: 'Gestion des commandes clients',
+};
 import { prisma } from '@/lib/prisma';
 
 import { auth } from '@/auth';

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { handleCheckoutSession } from '../stripe/process';
+import { handleCheckoutSession } from '../process';
 
 export async function POST(request: Request) {
   // Dev-only: allow simulating a checkout.session.completed without Stripe signature

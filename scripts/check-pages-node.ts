@@ -1,6 +1,6 @@
 (async function(){
   const base = 'http://localhost:3000';
-  async function get(path){
+  async function get(path: string): Promise<string>{
     const res = await fetch(base+path);
     if(!res.ok) throw new Error(path+' status '+res.status);
     return await res.text();
@@ -17,7 +17,7 @@
     const o = await get('/dashboard/orders');
     console.log('/dashboard/orders contains MacBook Pro 16"?', o.includes('MacBook Pro 16"'));
     console.log('/dashboard/orders contains 2999?', o.includes('2999'));
-  }catch(e){
+  }catch(e: any){
     console.error('check failed', e.message);
     process.exit(1);
   }
