@@ -19,7 +19,7 @@
     "@auth/prisma-adapter": "^2.7.4",
     "@prisma/client": "^6.8.0",
     "lucide-react": "^0.561.0",
-    "next": "^15.1.0",
+    "next": "15.1.11",
     "next-auth": "^5.0.0-beta.25",
     "prisma": "^6.8.0",
     "react": "^19.0.0",
